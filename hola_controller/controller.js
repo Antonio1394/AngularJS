@@ -1,4 +1,4 @@
-var app= angular.module("MyFirstApp",[])
-app.controller("FirstController",function($scope){
+angular.module("MyFirstApp",[])
+.controller("FirstController",function($scope){
 	$scope.nombre="Antonio";
 });
