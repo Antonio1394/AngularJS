@@ -1,13 +1,26 @@
 <!DOCTYPE html>
-<html ng-app="MyFirstApp">
+<html ng-app="ToDoList">
 <head>
 	<meta charset="utf-8">
 	<title>Hola Mundo Angular</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script src="angular-local-storage.min.js"></script>
+	<script src="controller.js"></script>
+
 
 </head>
-<body ng-controller="FirstController">
+<body ng-controller="ToDoController">
+	<ul>
+		<li ng-repeat="actividad in todo">
+			{{actividad.description}}
+			{{actividad.fecha}}
+		</li>
+	</ul>
+	<form ng-submit="addActv()">
+		<input type="text" ng-model="newActv.description">
+		<input type="datetime-local" ng-model="newActv.fecha">
+		<input type="submit" value="Guardar Actividad">
+	</form>
 	
 </body>
 </html>
