@@ -5,6 +5,9 @@ angular.module("mainModule",[])
 		}
 	})
 	.controller("FiltersController", function($scope){
-		$scope.mi_html="<p>Hola Mundo</p>"
+		$scope.mi_html={};
+		$scope.mi_html.title="hola";
+		$scope.mi_html.body="Hola Mundo"
+		$scope.costo=2;
 		
 	});

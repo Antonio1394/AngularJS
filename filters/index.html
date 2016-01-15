@@ -10,6 +10,9 @@
 
 </head>
 <body ng-controller="FiltersController">
-	{{mi_html | removeHtml}}	
+	{{mi_html | json}}
+	<p>
+		{{costo | currency:'Q'}}
+	</p>	
 </body>
 </html>
