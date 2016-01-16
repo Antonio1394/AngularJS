@@ -9,9 +9,9 @@
 			.controller("FirstController",function($scope){
 				$scope.nombre="Uriel"
 				setTimeout(function(){
-					$scope.nombre="Codigo Facilito";
-					console.log($scope.nombre);
-					$scope.$digest();
+					$scope.$apply(function(){
+						$scope.nombre="Codigo Facilito"
+					});
 				},2000);
 			});
 		</script>
@@ -19,5 +19,6 @@
 </head>
 <body ng-controller="FirstController">
 	<h1>{{nombre}}</h1>
+	<button id="mi_boton">haz Clic</button>
 </body>
 </html>
