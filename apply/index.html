@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="mainModule">
+<head>
+	<meta charset="utf-8">
+	<title>Ejemplo de Aplly</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script>
+		angular.module("mainModule",[])
+			.controller("FirstController",function($scope){
+				$scope.nombre="Uriel"
+				setTimeout(function(){
+					$scope.nombre="Codigo Facilito";
+					console.log($scope.nombre);
+					$scope.$digest();
+				},2000);
+			});
+		</script>
+
+</head>
+<body ng-controller="FirstController">
+	<h1>{{nombre}}</h1>
+</body>
+</html>
