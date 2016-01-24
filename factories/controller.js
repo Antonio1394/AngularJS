@@ -28,19 +28,23 @@ angular.module("ToDoList",["LocalStorageModule"])
 			return activty !== item;
 		});
 		toDoService.updaLocalStorage();
+		return toDoService.getAll
 	}
 	return toDoService;
 })
 .controller("ToDoController",function($scope){
-		
-	$scope.addActv=function(){
-		$scope.todo.push($scope.newActv);
-		$scope.newActv={};
-		localStorageService.set("angular-todolist",$scope.todo);
-	}
+	
+	$scope.todo=toDoService.getAll();
 
-	$scope.cleanActv=function(){
-		$scope.todo=[];
-		localStorageService.set("angular-todolist",$scope.todo);
+	$scope.addActv=function(){
+		ToDoService.addActv(newActv);
+		$scope.newActv={};	
 	}
+	$scope.removeAct=function(item){
+		$scope.todo=ToDoService.removeitem(item);
+	}
+	$scope.clean=function(){
+		ToDoService.clean();
+	}
+	
 });
