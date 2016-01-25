@@ -3,8 +3,9 @@ angular.module("ToDoList",["LocalStorageModule"])
 	var toDoService={};
 
 	toDoService.key="angular-todolist";
-	if(localStorageService.get()){toDoService.key
+	if(localStorageService.get(toDoService.key)){
 		toDoService.activities=localStorageService.get(toDoService.key);	
+	
 	}else{
 		toDoService.activities=[];
 	}
@@ -20,10 +21,10 @@ angular.module("ToDoList",["LocalStorageModule"])
 		toDoService.activities=[];
 		toDoService.updaLocalStorage();
 		return toDoService.getAll();
-	}
+	};
 	toDoService.getAll=function(){
 		return toDoService.activities;
-	}
+	};
 	toDoService.removeitem=function(item){
 		toDoService.activities=toDoService.activities.filter(function(activty){
 			return activty !== item;
