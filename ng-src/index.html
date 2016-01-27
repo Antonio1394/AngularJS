@@ -8,6 +8,13 @@
 
   </head>
   <body ng-controller="AppCtrl">
+    <ul class="no-list" ng-cloak>
+      <li ng-repeat="repo in repos">
+          <img ng-src="{{repo.owner.avatar_url}}"/>
+          <h1>{{repo.name}}</h1>
+
+      </li>
+    </ul>
 
   </body>
 </html>
