@@ -1,7 +1,7 @@
 angular.module("CustomDirective",[])
 .directive("myAutocomplete",function(){
-    function link(scope,elemet,attrs){
-        $(elemet).autocomplete({
+    function link(scope,element,attrs){
+        $(element).autocomplete({
             source: scope[attrs.myAutocomplete],
             select: function(ev,ui){
               ev.preventDefault();
@@ -34,7 +34,7 @@ angular.module("CustomDirective",[])
   $scope.repos=[];
   $http.get("https://api.github.com/users/antonio1394/repos")
   .success(function(data){
-      $scope.repos=data;
+      $scope.posts=data;
       for (var i =data.lenght-1; i>=0; i--) {
           var repo=data[i];
           $scope.repos.push(repo.name);
