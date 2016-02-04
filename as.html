@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="webApp">
+    <head>
+        <meta charset="UTF-8">
+        <title>19</title>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/jquery-ui-git.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <style>
+            .circle {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                display: inline-block;
+            }
+            .no-list li {
+                list-style-type: none;
+            }
+            body, html {
+                text-align: center;
+                background-color: #eee;
+                margin: 0px;
+            }
+            hr{
+                background-color: #ddd; height: 1px; border: 0;
+            }
+        </style>
+        <script>
+            var app = angular.module('webApp', []);
+            app.directive('myAutocomplete', function() {
+                function link(scope, element, attrs) {
+                    $(element).autocomplete({
+                        source: scope[attrs.myAutocomplete],
+                        select: function(e, ui) {
+                            e.preventDefault();
+                            if (ui.item) {
+                                scope.optionSelected(ui.item.value);
+                            }
+                        },
+                        focus: function(e, ui) {
+                            e.preventDefault();
+                            $(this).val(ui.item.label)
+                        }
+                    });
+                };
+                return {
+                    link: link
+                };
+            });
+            app.directive('backImg', function() {
+                return function(scope, element, attrs) {
+                    attrs.$observe('backImg', function(val) {
+                        element.css({
+                            "background": "url(" + val + ")",
+                            "background-size": "cover",
+                            "background-position": "center"
+                        })
+                    });
+                }
+            });
+            app.controller('appControl', function($scope, $http) {
+                $scope.repos = [];
+                $http.get('https://api.github.com/users/brojask/repos')
+                        .success(function(data) {
+                            $scope.repos = data;
+                            for (var i = data.length - 1; i >= 0; i--) {
+                                var repo = data[i];
+                                $scope.repos.push(repo.name);
+                            }
+                            ;
+                        })
+                        .error(function(err) {
+
+                        });
+                $scope.optionSelected = function(data) {
+                    $scope.$apply(function() {
+                        $scope.main_repo = data;
+                    })
+                }
+            })
+        </script>
+    </head>
+    <body ng-controller="appControl">
+        <h1>Directivas personalizadas 2</h1>
+        <input type="text" my-autocomplete="repos" placeholder="Buscar repositorio...">
+        <ul class="no-list">
+            <li ng-repeat="repo in repos" ng-hide="main_repo && main_repo != repo.name">
+                <h3>{{repo.name}}</h3>
+                <div class="circle" back-img="{{repo.owner.avatar_url}}"></div>
+                <hr>
+            </li>
+
+        </ul>
+    </body>
+</html>

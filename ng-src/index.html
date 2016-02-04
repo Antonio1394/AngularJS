@@ -7,6 +7,9 @@
     <title>Mi Primera Directiva con Angularjs</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/jquery-ui-git.css">
     <script src="autocomplete-jquery-ui.js"></script>
     <script src="app.js"></script>
     <style>
@@ -30,9 +33,8 @@
     <input type="text" my-autocomplete="repos" placeholder="Buscar Repositorio">
     <ul class="no-list">
       <li ng-repeat="repo in posts" ng-hide="main_repo && main_repo != repo.name">
-          <div class="circular" back-img="{{repo.owner.avatar_url}}">
+          <div class="circular" back-img="{{repo.owner.avatar_url}}"></div>
 
-          </div>
           <h1 class="inline-block">{{repo.full_name}}</h1>
 
       </li>
