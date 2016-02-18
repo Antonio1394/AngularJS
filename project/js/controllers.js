@@ -5,6 +5,9 @@ angular.module("FinalApp")
 
     $scope.posts=Post.query();
     $scope.users=User.query();
+    $scope.removePost=function(post){
+    	console.log("funcionoo")
+    }
     //Query Get/posts-> un arreglo de posts
 })
 .controller("PostController",function($scope,$resource, $routeParams){
