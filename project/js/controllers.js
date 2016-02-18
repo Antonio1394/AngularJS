@@ -7,6 +7,7 @@ angular.module("FinalApp")
     $scope.users=User.query();
     //Query Get/posts-> un arreglo de posts
 })
-.controller("PostController",function($scope){
-
+.controller("PostController",function($scope,$resource, $routeParams){
+    Post=$resource('http://jsonplaceholder.typicode.com/posts/:id',{id:'@id'});
+    $scope.post=Post.get({id: $routeParams.id});
 });
