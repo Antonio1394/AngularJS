@@ -6,4 +6,7 @@ angular.module("FinalApp")
     $scope.posts=Post.query();
     $scope.users=User.query();
     //Query Get/posts-> un arreglo de posts
+})
+.controller("PostController",function($scope){
+
 });
