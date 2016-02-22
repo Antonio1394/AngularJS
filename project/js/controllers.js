@@ -22,6 +22,7 @@ angular.module("FinalApp")
 .controller("NewPostController",function($scope,$resource){
     Post=$resource('http://jsonplaceholder.typicode.com/posts/:id',{id:'@id'});
     $scope.post={};
-    $scope.SavePost=function(){
+    $scope.savePost=function(){
+    	Post.save({data: $scope.post});
     }
 });
