@@ -12,16 +12,24 @@ angular.module("FinalApp")
     }
     //Query Get/posts-> un arreglo de posts
 })
-.controller("PostController",function($scope,PostResource, $routeParams){
+.controller("PostController",function($scope,PostResource, $routeParams,$location){
+	$scope.title="Editar Post";
     $scope.post=PostResource.get({id: $routeParams.id});
+    $scope.savePost=function(){
+    	PostResource.update({id: $scope.post.id},{data: $scope.post},function(data){
+    		console.log(data);
+    		$location.path("/");
+    	});
+    }
 })
 
-.controller("NewPostController",function($scope,PostResource){
+.controller("NewPostController",function($scope,PostResource,$location){
     $scope.post={};
     $scope.title="Crear Post";
     $scope.savePost=function(){
     	PostResource.save({data: $scope.post},function(data){
     		console.log(data);
+    		$location.path("/")
     	});
     }
 });
